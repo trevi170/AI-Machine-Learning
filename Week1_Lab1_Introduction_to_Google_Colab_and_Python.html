@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 - Lab 1: Introduction to Google Colab and Python</title>
+<style>
+  body {font-family: Arial, Helvetica, sans-serif; line-height: 1.6; margin: 0; background:#f5f7fa; color:#1f2937;}
+  .container {max-width: 980px; margin: 30px auto; background:#fff; padding: 40px; box-shadow:0 2px 10px rgba(0,0,0,.08); border-radius:10px;}
+  h1,h2,h3 {color:#123b63;}
+  h1 {border-bottom:4px solid #123b63; padding-bottom:10px;}
+  h2 {margin-top:32px; border-bottom:1px solid #d1d5db; padding-bottom:6px;}
+  .meta {background:#eef4fb; padding:15px 18px; border-left:5px solid #123b63; margin:20px 0;}
+  .objective, .note, .question, .submission {padding:14px 16px; border-radius:6px; margin:16px 0;}
+  .objective {background:#f0fdf4; border-left:5px solid #2f855a;}
+  .note {background:#fff7ed; border-left:5px solid #d97706;}
+  .question {background:#f8fafc; border:1px solid #cbd5e1;}
+  .submission {background:#f5f3ff; border-left:5px solid #7c3aed;}
+  code {font-family: Consolas, Monaco, monospace; background:#eef2f7; padding:2px 5px; border-radius:4px;}
+  pre {background:#111827; color:#f9fafb; padding:15px; border-radius:8px; overflow:auto;}
+  pre code {background:transparent; color:inherit; padding:0;}
+  table {width:100%; border-collapse:collapse; margin:16px 0;}
+  th, td {border:1px solid #cbd5e1; padding:10px; text-align:left;}
+  th {background:#eef4fb;}
+  ul, ol {padding-left:24px;}
+  .answer-line {border-bottom:1px solid #9ca3af; display:inline-block; min-width:260px; height:1.2em;}
+  .small {font-size:.95em; color:#4b5563;}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Week 1 – Lab 1: Introduction to Google Colab and Python</h1>
+
+  <div class="meta">
+    <strong>Course:</strong> Introduction to Machine Learning<br>
+    <strong>Week:</strong> 1<br>
+    <strong>Level:</strong> Beginner<br>
+    <strong>Suggested Time:</strong> 60–75 minutes<br>
+    <strong>Points:</strong> 15
+  </div>
+
+  <h2>Lab Overview</h2>
+  <p>This lab introduces you to Google Colab and basic Python programming. You will create your first notebook, run Python code, display text and numbers, perform simple calculations, create variables, and begin thinking about how Python is used in machine learning.</p>
+
+  <div class="objective">
+    <strong>Learning Objectives</strong>
+    <ul>
+      <li>Open and navigate Google Colab.</li>
+      <li>Create and rename a notebook.</li>
+      <li>Use code cells to run Python instructions.</li>
+      <li>Use <code>print()</code> to display text and numbers.</li>
+      <li>Perform basic arithmetic operations.</li>
+      <li>Create simple Python variables.</li>
+      <li>Explain how Python will be used later in machine learning.</li>
+    </ul>
+  </div>
+
+  <h2>Part 1 – Open Google Colab</h2>
+  <ol>
+    <li>Open a web browser such as Google Chrome, Microsoft Edge, Safari, or Firefox.</li>
+    <li>Go to <strong>https://colab.research.google.com</strong>.</li>
+    <li>Sign in with your Google account if prompted.</li>
+    <li>Select <strong>File → New notebook</strong>.</li>
+    <li>Rename your notebook using this format:</li>
+  </ol>
+  <pre><code>LastName_FirstName_Week1</code></pre>
+  <p>Example:</p>
+  <pre><code>Garcia_Maria_Week1</code></pre>
+
+  <div class="note">
+    <strong>Important:</strong> Google Colab saves your notebook to Google Drive. Make sure you are signed in to the correct account before beginning.
+  </div>
+
+  <h2>Part 2 – Your First Python Program</h2>
+  <p>Click inside the first code cell and type:</p>
+  <pre><code>print("Hello, World!")</code></pre>
+  <p>Click the <strong>▶ Run</strong> button to the left of the cell.</p>
+  <p>You should see:</p>
+  <pre><code>Hello, World!</code></pre>
+
+  <p>The command <code>print()</code> tells Python to display information on the screen. The words inside quotation marks are called a <strong>string</strong>.</p>
+
+  <div class="question"><strong>Question 1:</strong> What appeared after you ran the program?<br><span class="answer-line"></span></div>
+
+  <h2>Part 3 – Change the Message</h2>
+  <p>Replace the message with your own name.</p>
+  <pre><code>print("Maria Garcia")</code></pre>
+  <p>Replace the example name with your own name and run the cell again.</p>
+
+  <div class="question"><strong>Question 2:</strong> What changed in the output?<br><span class="answer-line"></span></div>
+
+  <h2>Part 4 – Display Multiple Messages</h2>
+  <p>Create a new code cell and enter:</p>
+  <pre><code>print("Welcome to Machine Learning!")
+print("I am learning Python.")
+print("This is my first lab.")</code></pre>
+  <p>Run the cell.</p>
+
+  <div class="question"><strong>Question 3:</strong> How many lines of output were displayed?<br><span class="answer-line"></span></div>
+
+  <h2>Part 5 – Working with Numbers</h2>
+  <p>Python can also display and calculate numbers.</p>
+  <pre><code>print(5)
+print(10)
+print(20)
+print(5 + 5)</code></pre>
+  <p>Run the cell.</p>
+
+  <p>Expected output:</p>
+  <pre><code>5
+10
+20
+10</code></pre>
+
+  <h2>Part 6 – Basic Calculations</h2>
+  <p>Enter the following code:</p>
+  <pre><code>print(10 + 5)
+print(10 - 5)
+print(10 * 5)
+print(10 / 5)</code></pre>
+
+  <table>
+    <tr><th>Operation</th><th>Python Symbol</th><th>Result</th></tr>
+    <tr><td>Addition</td><td><code>+</code></td><td>15</td></tr>
+    <tr><td>Subtraction</td><td><code>-</code></td><td>5</td></tr>
+    <tr><td>Multiplication</td><td><code>*</code></td><td>50</td></tr>
+    <tr><td>Division</td><td><code>/</code></td><td>2.0</td></tr>
+  </table>
+
+  <div class="question"><strong>Question 4:</strong> Which symbol is used for multiplication in Python?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>Question 5:</strong> Which symbol is used for division in Python?<br><span class="answer-line"></span></div>
+
+  <h2>Part 7 – Your First Variable</h2>
+  <p>A <strong>variable</strong> stores information so that a program can use it later.</p>
+  <pre><code>student_name = "Maria"
+print(student_name)</code></pre>
+  <p>Replace <code>Maria</code> with your own first name.</p>
+
+  <p>The variable is named <code>student_name</code>. The value stored inside it is the student's name.</p>
+
+  <h2>Part 8 – A Number Variable</h2>
+  <pre><code>age = 18
+print(age)</code></pre>
+  <p>Change <code>18</code> to your age.</p>
+
+  <p>Now add:</p>
+  <pre><code>next_year = age + 1
+print(next_year)</code></pre>
+
+  <div class="question"><strong>Question 6:</strong> What value was displayed for <code>next_year</code>?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>Question 7:</strong> In your own words, what is a variable?<br><span class="answer-line"></span></div>
+
+  <h2>Part 9 – Combining Text and Variables</h2>
+  <pre><code>name = "Maria"
+course = "Machine Learning"
+
+print("Student:", name)
+print("Course:", course)</code></pre>
+  <p>Replace the example name with your own.</p>
+
+  <h2>Part 10 – Create a Student Record</h2>
+  <p>Create variables for your name, age, and course.</p>
+  <pre><code>name = "Maria Garcia"
+age = 18
+course = "Machine Learning"
+
+print("Student Name:", name)
+print("Age:", age)
+print("Course:", course)</code></pre>
+
+  <p>Modify the values so they contain your own information.</p>
+
+  <h2>Part 11 – Independent Challenge</h2>
+  <p>Create three variables:</p>
+  <ul>
+    <li>Your favorite number</li>
+    <li>Your birth year</li>
+    <li>The current year</li>
+  </ul>
+
+  <p>Then use Python to calculate an approximate age.</p>
+  <p>Example structure:</p>
+  <pre><code>favorite_number = 7
+birth_year = 2007
+current_year = 2026
+
+age = current_year - birth_year
+
+print("Favorite Number:", favorite_number)
+print("Approximate Age:", age)</code></pre>
+
+  <div class="note">
+    Your calculated age may be one year different depending on whether your birthday has already occurred this year. That is okay for this activity.
+  </div>
+
+  <h2>Part 12 – Machine Learning Connection</h2>
+  <p>Machine learning works with data. Consider the following small dataset:</p>
+
+  <table>
+    <tr><th>Hours Studied</th><th>Exam Score</th></tr>
+    <tr><td>1</td><td>55</td></tr>
+    <tr><td>2</td><td>65</td></tr>
+    <tr><td>4</td><td>80</td></tr>
+    <tr><td>5</td><td>88</td></tr>
+    <tr><td>6</td><td>95</td></tr>
+  </table>
+
+  <p>Later in the course, Python can help us examine data like this and build a machine-learning model that looks for patterns.</p>
+  <p>For example, we might eventually ask the computer:</p>
+  <p><strong>If a student studies 3 hours, what exam score might we predict?</strong></p>
+  <p>You do not need to know how to create that prediction yet. For now, the important idea is that Python gives us a way to work with the data.</p>
+
+  <h2>Part 13 – Review Questions</h2>
+  <div class="question"><strong>1.</strong> What is Python?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>2.</strong> What is Google Colab?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>3.</strong> What is a code cell?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>4.</strong> What does <code>print()</code> do?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>5.</strong> What is a string?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>6.</strong> What is a variable?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>7.</strong> What symbol is used for addition?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>8.</strong> What symbol is used for multiplication?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>9.</strong> What happens when you click the Run button in Google Colab?<br><span class="answer-line"></span></div>
+  <div class="question"><strong>10.</strong> Why is Python useful for machine learning?<br><span class="answer-line"></span></div>
+
+  <h2>Submission Checklist</h2>
+  <div class="submission">
+    <ul>
+      <li>☐ Notebook is named correctly.</li>
+      <li>☐ Your name appears in the notebook.</li>
+      <li>☐ All code cells have been completed.</li>
+      <li>☐ Your code runs without errors.</li>
+      <li>☐ Output is visible.</li>
+      <li>☐ Questions 1–7 are answered.</li>
+      <li>☐ Independent Challenge is complete.</li>
+      <li>☐ Review Questions are answered.</li>
+    </ul>
+  </div>
+
+  <h2>Suggested Grading – 15 Points</h2>
+  <table>
+    <tr><th>Requirement</th><th>Points</th></tr>
+    <tr><td>Notebook setup</td><td>1</td></tr>
+    <tr><td>First Python programs</td><td>2</td></tr>
+    <tr><td>Basic calculations</td><td>2</td></tr>
+    <tr><td>Variables</td><td>2</td></tr>
+    <tr><td>Student record</td><td>2</td></tr>
+    <tr><td>Independent Challenge</td><td>2</td></tr>
+    <tr><td>Review questions</td><td>3</td></tr>
+    <tr><td>Complete/working output</td><td>1</td></tr>
+    <tr><th>Total</th><th>15</th></tr>
+  </table>
+
+  <p class="small">Instructor note: This student version does not include the answer key.</p>
+</div>
+</body>
+</html>
