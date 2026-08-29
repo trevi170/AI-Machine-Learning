@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 3 Lab 3</title>
+<style>
+  body {font-family: Arial, Helvetica, sans-serif; line-height: 1.6; margin: 0; background:#f5f7fa; color:#1f2937;}
+  .container {max-width: 980px; margin: 30px auto; background:#fff; padding: 40px; box-shadow:0 2px 10px rgba(0,0,0,.08); border-radius:10px;}
+  h1,h2,h3 {color:#123b63;}
+  h1 {border-bottom:4px solid #123b63; padding-bottom:10px;}
+  h2 {margin-top:32px; border-bottom:1px solid #d1d5db; padding-bottom:6px;}
+  .meta {background:#eef4fb; padding:15px 18px; border-left:5px solid #123b63; margin:20px 0;}
+  .objective, .note, .question, .submission {padding:14px 16px; border-radius:6px; margin:16px 0;}
+  .objective {background:#f0fdf4; border-left:5px solid #2f855a;}
+  .note {background:#fff7ed; border-left:5px solid #d97706;}
+  .question {background:#f8fafc; border:1px solid #cbd5e1;}
+  .submission {background:#f5f3ff; border-left:5px solid #7c3aed;}
+  code {font-family: Consolas, Monaco, monospace; background:#eef2f7; padding:2px 5px; border-radius:4px;}
+  pre {background:#111827; color:#f9fafb; padding:15px; border-radius:8px; overflow:auto;}
+  pre code {background:transparent; color:inherit; padding:0;}
+  table {width:100%; border-collapse:collapse; margin:16px 0;}
+  th, td {border:1px solid #cbd5e1; padding:10px; text-align:left; vertical-align:top;}
+  th {background:#eef4fb;}
+  ul, ol {padding-left:24px;}
+  .answer-line {border-bottom:1px solid #9ca3af; display:inline-block; min-width:260px; height:1.2em;}
+  .small {font-size:.95em; color:#4b5563;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Week 3 – Lab 3: Lists, Conditions, and Decisions</h1>
+<div class="meta">
+<strong>Course:</strong> CYAI 1471 – Introduction to Machine Learning<br>
+<strong>Week:</strong> 3<br>
+<strong>Level:</strong> Beginner<br>
+<strong>Suggested Time:</strong> 75–90 minutes<br>
+<strong>Points:</strong> 15<br>
+<strong>Due:</strong> Sunday, September 13, 2026
+</div>
+
+<h2>Lab Overview</h2>
+<p>This lab introduces Python lists and conditional statements. You will learn how to store multiple values in one variable, access values by position, calculate simple results from lists, and use Python to make decisions.</p>
+
+<div class="objective">
+<strong>Learning Objectives</strong>
+<ul>
+<li>Create and display Python lists.</li>
+<li>Access list items using indexes.</li>
+<li>Use <code>len()</code>, <code>min()</code>, <code>max()</code>, and <code>sum()</code>.</li>
+<li>Calculate the average of a list.</li>
+<li>Use comparison operators.</li>
+<li>Create <code>if</code>, <code>else</code>, and <code>elif</code> statements.</li>
+<li>Use simple rules to classify values.</li>
+</ul>
+</div>
+
+<div class="note"><strong>Important:</strong> Whenever you see a question, click <strong>+ Text</strong> in Google Colab below your code and type the question number followed by your answer. Do not place written answers inside a Python code cell.</div>
+
+<h2>Part 1 – Create Your Notebook</h2>
+<ol>
+<li>Open Google Colab.</li>
+<li>Create a new notebook.</li>
+<li>Rename your notebook using this format:</li>
+</ol>
+<pre><code>LastName_FirstName_Lab3</code></pre>
+<p>Example:</p>
+<pre><code>Garcia_Maria_Lab3</code></pre>
+
+<h2>Part 2 – Create Your First List</h2>
+<p>A <strong>list</strong> allows Python to store multiple values in one variable.</p>
+<pre><code>scores = [85, 90, 78, 92, 88]
+print(scores)</code></pre>
+<div class="question"><strong>Question 1:</strong> How many exam scores are stored in the list?<br><span class="answer-line"></span></div>
+
+<h2>Part 3 – Access Values in a List</h2>
+<p>Python starts counting list positions at <strong>0</strong>.</p>
+<table><tr><th>Value</th><td>85</td><td>90</td><td>78</td><td>92</td><td>88</td></tr><tr><th>Index</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr></table>
+<pre><code>scores = [85, 90, 78, 92, 88]
+
+print(scores[0])
+print(scores[1])
+print(scores[2])</code></pre>
+<div class="question"><strong>Question 2:</strong> What value is stored at index <code>0</code>?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Question 3:</strong> What value is stored at index <code>2</code>?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Question 4:</strong> What is the index of the value <code>92</code>?<br><span class="answer-line"></span></div>
+
+<h2>Part 4 – Count Items in a List</h2>
+<pre><code>scores = [85, 90, 78, 92, 88]
+number_of_scores = len(scores)
+
+print("Number of scores:", number_of_scores)</code></pre>
+<div class="question"><strong>Question 5:</strong> How many scores did Python count?<br><span class="answer-line"></span></div>
+
+<h2>Part 5 – Minimum and Maximum Values</h2>
+<pre><code>scores = [85, 90, 78, 92, 88]
+
+print("Lowest Score:", min(scores))
+print("Highest Score:", max(scores))</code></pre>
+<div class="question"><strong>Question 6:</strong> What is the lowest score?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Question 7:</strong> What is the highest score?<br><span class="answer-line"></span></div>
+
+<h2>Part 6 – Add and Average List Values</h2>
+<pre><code>scores = [85, 90, 78, 92, 88]
+
+total = sum(scores)
+number_of_scores = len(scores)
+average = total / number_of_scores
+
+print("Total:", total)
+print("Average:", average)</code></pre>
+<div class="question"><strong>Question 8:</strong> What total did Python calculate?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Question 9:</strong> What average did Python calculate?<br><span class="answer-line"></span></div>
+
+<h2>Part 7 – Change the Data</h2>
+<p>Change the list to:</p>
+<pre><code>scores = [70, 75, 80, 85, 90]</code></pre>
+<p>Run the average calculation again.</p>
+<div class="question"><strong>Question 10:</strong> What is the new average?<br><span class="answer-line"></span></div>
+
+<h2>Part 8 – Comparison Operators</h2>
+<p>Python uses comparison operators to compare values.</p>
+<table><tr><th>Operator</th><th>Meaning</th></tr><tr><td><code>==</code></td><td>Equal to</td></tr><tr><td><code>!=</code></td><td>Not equal to</td></tr><tr><td><code>&gt;</code></td><td>Greater than</td></tr><tr><td><code>&lt;</code></td><td>Less than</td></tr><tr><td><code>&gt;=</code></td><td>Greater than or equal to</td></tr><tr><td><code>&lt;=</code></td><td>Less than or equal to</td></tr></table>
+<div class="question"><strong>Question 11:</strong> Which operator means greater than or equal to?<br><span class="answer-line"></span></div>
+
+<h2>Part 9 – Basic if Statement</h2>
+<pre><code>exam_score = 85
+
+if exam_score &gt;= 70:
+    print("Pass")</code></pre>
+<p>Run the cell. Make sure the <code>print()</code> line is indented.</p>
+
+<h2>Part 10 – if and else</h2>
+<pre><code>exam_score = 85
+
+if exam_score &gt;= 70:
+    print("Pass")
+else:
+    print("Fail")</code></pre>
+<p>Now change <code>exam_score</code> to <code>65</code> and run the code again.</p>
+<div class="question"><strong>Question 12:</strong> What happened when the score was changed to <code>65</code>?<br><span class="answer-line"></span></div>
+
+<h2>Part 11 – Multiple Decisions with elif</h2>
+<pre><code>score = 92
+
+if score &gt;= 90:
+    print("Grade: A")
+elif score &gt;= 80:
+    print("Grade: B")
+elif score &gt;= 70:
+    print("Grade: C")
+elif score &gt;= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")</code></pre>
+<p>Run the program several times using these values: <code>95</code>, <code>84</code>, <code>73</code>, <code>62</code>, and <code>50</code>.</p>
+<table><tr><th>Score</th><th>Grade</th></tr><tr><td>95</td><td></td></tr><tr><td>84</td><td></td></tr><tr><td>73</td><td></td></tr><tr><td>62</td><td></td></tr><tr><td>50</td><td></td></tr></table>
+<div class="question"><strong>Question 13:</strong> What grade did Python assign to <code>84</code>?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Question 14:</strong> What grade did Python assign to <code>50</code>?<br><span class="answer-line"></span></div>
+
+<h2>Part 12 – Lists and Conditions Together</h2>
+<pre><code>scores = [85, 65, 92, 70, 55]
+
+score = scores[0]
+
+if score &gt;= 70:
+    print(score, "Pass")
+else:
+    print(score, "Fail")</code></pre>
+<p>Now change <code>score = scores[0]</code> to <code>score = scores[1]</code> and run the code again.</p>
+<div class="question"><strong>Question 15:</strong> What result did you get?<br><span class="answer-line"></span></div>
+
+<h2>Part 13 – Simple Classification Program</h2>
+<p>Classification means placing something into a category.</p>
+<pre><code>score = 88
+
+if score &gt;= 70:
+    classification = "Pass"
+else:
+    classification = "Fail"
+
+print("Score:", score)
+print("Classification:", classification)</code></pre>
+<p>This is not machine learning yet. We created the rule ourselves.</p>
+
+<h2>Part 14 – Independent Challenge</h2>
+<p>Create the following list:</p>
+<pre><code>temperatures = [72, 85, 91, 68, 79]</code></pre>
+<p>Your program must display:</p>
+<ul>
+<li>All temperatures</li>
+<li>Number of temperatures</li>
+<li>Lowest temperature</li>
+<li>Highest temperature</li>
+<li>Average temperature</li>
+</ul>
+<div class="question"><strong>Challenge Question 1:</strong> What was the lowest temperature?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Challenge Question 2:</strong> What was the highest temperature?<br><span class="answer-line"></span></div>
+<div class="question"><strong>Challenge Question 3:</strong> What was the average temperature?<br><span class="answer-line"></span></div>
+
+<h2>Part 15 – Review Questions</h2>
+<div class="question"><strong>1.</strong> What is a Python list?<br><span class="answer-line"></span></div>
+<div class="question"><strong>2.</strong> Why might we use a list instead of creating many separate variables?<br><span class="answer-line"></span></div>
+<div class="question"><strong>3.</strong> What is an index?<br><span class="answer-line"></span></div>
+<div class="question"><strong>4.</strong> What does an <code>if</code> statement allow a program to do?<br><span class="answer-line"></span></div>
+<div class="question"><strong>5.</strong> What is the purpose of <code>else</code>?<br><span class="answer-line"></span></div>
+<div class="question"><strong>6.</strong> What is the purpose of <code>elif</code>?<br><span class="answer-line"></span></div>
+<div class="question"><strong>7.</strong> In your own words, explain how rule-based decisions are different from machine learning.<br><span class="answer-line"></span></div>
+
+<h2>Part 16 – Machine Learning Connection</h2>
+<p>This week, you used rules such as <code>score &gt;= 70</code> to classify values as Pass or Fail. In machine learning, we often provide many examples and allow an algorithm to identify patterns instead of manually writing every possible rule.</p>
+
+<h2>Submission Checklist</h2>
+<div class="submission"><ul>
+<li>☐ Notebook is named correctly.</li>
+<li>☐ Your name appears in the notebook.</li>
+<li>☐ All code cells have been completed.</li>
+<li>☐ Your code runs without errors.</li>
+<li>☐ Output is visible.</li>
+<li>☐ Questions 1–15 are answered.</li>
+<li>☐ Independent Challenge is complete.</li>
+<li>☐ Review Questions are answered.</li>
+<li>☐ Notebook was downloaded as a <code>.ipynb</code> file and submitted in Blackboard.</li>
+</ul></div>
+
+<h2>Suggested Grading – 15 Points</h2>
+<table>
+<tr><th>Requirement</th><th>Points</th></tr>
+<tr><td>Notebook setup</td><td>1</td></tr>
+<tr><td>Creating and accessing lists</td><td>2</td></tr>
+<tr><td>List calculations</td><td>2</td></tr>
+<tr><td>Comparison operators</td><td>1</td></tr>
+<tr><td><code>if</code>, <code>else</code>, and <code>elif</code></td><td>3</td></tr>
+<tr><td>Lists with conditions</td><td>2</td></tr>
+<tr><td>Independent Challenge</td><td>1</td></tr>
+<tr><td>Review questions</td><td>2</td></tr>
+<tr><td>Complete/working output</td><td>1</td></tr>
+<tr><th>Total</th><th>15</th></tr>
+</table>
+<p class="small">Instructor note: This student version does not include the answer key.</p>
+
+</div>
+</body>
+</html>
