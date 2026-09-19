@@ -1,0 +1,68 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Exam 1 Complete Study Guide</title><style>body{font-family:Arial;line-height:1.6;background:#f5f7fa;color:#1f2937;margin:0}.c{max-width:980px;margin:30px auto;background:white;padding:40px;border-radius:10px}h1,h2,h3{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:10px}h2{border-bottom:1px solid #d1d5db;padding-bottom:6px;margin-top:32px}.box{background:#eef4fb;border-left:5px solid #123b63;padding:14px;margin:15px 0}.green{background:#f0fdf4;border-left:5px solid #2f855a;padding:14px;margin:15px 0}.note{background:#fff7ed;border-left:5px solid #d97706;padding:14px;margin:15px 0}code{background:#eef2f7;padding:2px 5px;border-radius:4px}pre{background:#111827;color:white;padding:14px;border-radius:8px;overflow:auto}table{width:100%;border-collapse:collapse}th,td{border:1px solid #cbd5e1;padding:9px;text-align:left}th{background:#eef4fb}</style>
+<style>
+pre {
+    background: #111827;
+    color: #f9fafb;
+    padding: 15px;
+    border-radius: 8px;
+    overflow: auto;
+}
+pre code {
+    background: transparent !important;
+    color: #f9fafb !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-family: Consolas, Monaco, monospace;
+}
+</style>
+
+</head><body><div class="c"><h1>Exam 1 Complete Study Guide – Weeks 1–5</h1><div class="box"><b>CYAI 1471 – Introduction to Machine Learning</b><br>Exam 1 · 100 Points · 50 Multiple-Choice Questions · 2 Points Each</div><p>This guide contains the definitions, explanations, code examples, and results students need to read and understand for Exam 1. The exam may ask the same idea using different wording.</p><div class="note"><b>Study method:</b> Read each section and practice predicting the output of the code before running it.</div><h2>Week 1 – Python and Google Colab</h2>
+<h3>Core ideas</h3><div class="green"><b>Python</b> is a programming language used for automation, data analysis, AI, and machine learning. <b>Google Colab</b> is a browser-based notebook environment for writing and running Python.</div>
+<table><tr><th>Concept</th><th>Know this</th></tr><tr><td>Code cell</td><td>Writes and executes Python code.</td></tr><tr><td>Text cell</td><td>Written explanations and answers.</td></tr><tr><td>Run</td><td>Executes the selected code cell.</td></tr><tr><td>print()</td><td>Displays output.</td></tr><tr><td>String</td><td>Text, normally inside quotation marks.</td></tr><tr><td>Variable</td><td>A name that stores a value.</td></tr></table>
+<h3>Arithmetic</h3><table><tr><th>Symbol</th><th>Meaning</th><th>Example</th><th>Result</th></tr><tr><td>+</td><td>Add</td><td>10+5</td><td>15</td></tr><tr><td>-</td><td>Subtract</td><td>10-5</td><td>5</td></tr><tr><td>*</td><td>Multiply</td><td>10*5</td><td>50</td></tr><tr><td>/</td><td>Divide</td><td>10/5</td><td>2.0</td></tr></table>
+<pre><code>name = "Maria"
+age = 18
+next_year = age + 1
+print(name)
+print(next_year)</code></pre><p>Output: <b>Maria</b> and <b>19</b>.</p><h2>Week 2 – Variables, Data Types, Input, and Calculations</h2>
+<table><tr><th>Type</th><th>Meaning</th><th>Example</th></tr><tr><td>str</td><td>Text</td><td>"Maria"</td></tr><tr><td>int</td><td>Whole number</td><td>25</td></tr><tr><td>float</td><td>Decimal number</td><td>12.5</td></tr><tr><td>bool</td><td>Boolean</td><td>True / False</td></tr></table>
+<p><code>type()</code> reports a value's data type. <code>input()</code> returns a <b>string by default</b>. Use <code>int()</code> to convert appropriate text to a whole number and <code>float()</code> for a decimal number.</p>
+<pre><code>age = int(input("Enter age: "))
+price = float(input("Enter price: "))</code></pre>
+<div class="green"><b>Important:</b> <code>25</code> is an integer; <code>"25"</code> is a string. Correct data types matter because they determine how Python can process a value.</div>
+<pre><code>score = 80
+score = 90
+print(score)</code></pre><p>The final value is <b>90</b> because the newer assignment replaces the old value.</p><h2>Week 3 – Lists, Comparisons, and Decisions</h2>
+<p>A <b>list</b> stores multiple values. Python list indexing begins at <b>0</b>.</p><pre><code>scores = [85, 90, 78, 92, 88]</code></pre>
+<table><tr><th>Expression</th><th>Result</th></tr><tr><td>scores[0]</td><td>85</td></tr><tr><td>scores[2]</td><td>78</td></tr><tr><td>len(scores)</td><td>5</td></tr><tr><td>min(scores)</td><td>78</td></tr><tr><td>max(scores)</td><td>92</td></tr><tr><td>sum(scores)</td><td>433</td></tr><tr><td>sum(scores)/len(scores)</td><td>86.6</td></tr></table>
+<h3>Comparison operators</h3><table><tr><td>==</td><td>equal to</td><td>!=</td><td>not equal to</td></tr><tr><td>&gt;</td><td>greater than</td><td>&lt;</td><td>less than</td></tr><tr><td>&gt;=</td><td>greater than or equal to</td><td>&lt;=</td><td>less than or equal to</td></tr></table>
+<p><code>if</code> tests a condition. <code>elif</code> tests another condition. <code>else</code> handles the path when previous conditions are false.</p>
+<pre><code>score = 84
+if score >= 90:
+    print("A")
+elif score >= 80:
+    print("B")
+else:
+    print("C or below")</code></pre><p>Output: <b>B</b>.</p><h2>Week 4 – Loops and Functions</h2>
+<div class="green"><b>Loop:</b> repeats instructions. This is useful for processing many values in a dataset.</div>
+<pre><code>for number in range(5):
+    print(number)</code></pre><p>Output: <b>0, 1, 2, 3, 4</b>. The ending value 5 is not included.</p>
+<pre><code>for number in range(1, 6):
+    print(number)</code></pre><p>Output: <b>1, 2, 3, 4, 5</b>.</p>
+<p>A <b>function</b> is a reusable block of code and begins with <code>def</code>. A <b>parameter</b> receives a value supplied when the function is called. <code>return</code> sends a result back to the caller.</p>
+<pre><code>def double(number):
+    return number * 2
+
+print(double(4))</code></pre><p>Output: <b>8</b>.</p>
+<div class="green">Functions make code reusable and reduce duplication. A loop plus an <code>if</code> statement can process many scores and classify each one as Pass or Fail.</div><h2>Week 5 – pandas and DataFrames</h2>
+<p><b>pandas</b> is a Python library for organizing, inspecting, analyzing, and preparing structured data. The standard import is:</p><pre><code>import pandas as pd</code></pre>
+<div class="green"><b>DataFrame:</b> a table-like data structure. A row typically represents one observation/record. A column represents one attribute or type of information.</div>
+<table><tr><th>Code</th><th>Purpose</th></tr><tr><td>df.head()</td><td>Shows the first rows.</td></tr><tr><td>df.shape</td><td>Reports (rows, columns).</td></tr><tr><td>df.columns</td><td>Shows column names.</td></tr><tr><td>df["Exam_Score"]</td><td>Selects the Exam_Score column.</td></tr><tr><td>.mean()</td><td>Average</td></tr><tr><td>.min()</td><td>Lowest value</td></tr><tr><td>.max()</td><td>Highest value</td></tr></table>
+<pre><code>df["Passed"] = df["Exam_Score"] >= 70</code></pre><p>This creates Boolean True/False values based on whether each score is at least 70.</p>
+<p>A <b>CSV</b> file is commonly used to store tabular data. <code>df.to_csv(...)</code> saves data and <code>pd.read_csv(...)</code> loads it.</p>
+<div class="green">pandas matters for machine learning because models need organized data. pandas helps inspect, summarize, clean, and prepare that data.</div><h2>Quick Facts to Know</h2><table><tr><th>Question idea</th><th>Information to remember</th></tr>
+<tr><td>Written answers in Colab</td><td>Use a Text cell.</td></tr><tr><td>Whole number type</td><td>int</td></tr><tr><td>Text type</td><td>str</td></tr><tr><td>Decimal type</td><td>float</td></tr><tr><td>Boolean values</td><td>True / False</td></tr>
+<tr><td>First list index</td><td>0</td></tr><tr><td>Equality comparison</td><td>==</td></tr><tr><td>Greater than or equal</td><td>&gt;=</td></tr><tr><td>Start a function</td><td>def</td></tr><tr><td>Send value from function</td><td>return</td></tr>
+<tr><td>Import pandas</td><td>import pandas as pd</td></tr><tr><td>Table-like pandas structure</td><td>DataFrame</td></tr><tr><td>Average in pandas</td><td>.mean()</td></tr><tr><td>First rows</td><td>.head()</td></tr><tr><td>Rows and columns count</td><td>.shape</td></tr></table>
+<h2>Final Checklist</h2><p>Be able to explain: <code>print()</code>, variables, the four basic data types, <code>input()</code>, type conversion, lists and indexing, <code>len/min/max/sum</code>, comparison operators, <code>if/elif/else</code>, loops, <code>range()</code>, functions, parameters, <code>return</code>, pandas, DataFrames, rows/columns, <code>head()</code>, <code>shape</code>, <code>mean/min/max</code>, and CSV files.</p>
+<div class="note"><b>Important:</b> Do not only memorize definitions. Make sure you can read a short Python example and determine what it will output.</div></div></body></html>

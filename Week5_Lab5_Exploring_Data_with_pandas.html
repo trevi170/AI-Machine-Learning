@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;margin:0;background:#f5f7fa;color:#1f2937}.container{max-width:980px;margin:30px auto;background:#fff;padding:40px;box-shadow:0 2px 10px rgba(0,0,0,.08);border-radius:10px}h1,h2,h3{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:10px}h2{margin-top:32px;border-bottom:1px solid #d1d5db;padding-bottom:6px}.meta{background:#eef4fb;padding:15px 18px;border-left:5px solid #123b63;margin:20px 0}.objective,.note,.question,.submission,.answer{padding:14px 16px;border-radius:6px;margin:16px 0}.objective,.answer{background:#f0fdf4;border-left:5px solid #2f855a}.note{background:#fff7ed;border-left:5px solid #d97706}.question{background:#f8fafc;border:1px solid #cbd5e1}.submission{background:#f5f3ff;border-left:5px solid #7c3aed}code{font-family:Consolas,Monaco,monospace;background:#eef2f7;padding:2px 5px;border-radius:4px}pre{background:#111827;color:#f9fafb;padding:15px;border-radius:8px;overflow:auto}pre code{background:transparent;color:inherit;padding:0}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid #cbd5e1;padding:10px;text-align:left}th{background:#eef4fb}</style></head><body><div class="container"><h1>Week 5 – Lab 5: Exploring Data with pandas</h1><div class="meta"><strong>Level:</strong> Beginner &nbsp; <strong>Time:</strong> 75–90 minutes &nbsp; <strong>Points:</strong> 15<br><strong>Due:</strong> Sunday, September 27, 2026</div><div class="objective"><strong>Objectives:</strong> import pandas, create a DataFrame, inspect data, select columns, calculate summary values, create a new column, and work with CSV files.</div><div class="note">Answer every question in a <strong>+ Text</strong> cell in Google Colab.</div>
+<h2>Part 1 – Import pandas</h2><pre><code>import pandas as pd
+print("pandas is ready!")</code></pre><div class="question"><strong>Q1.</strong> What abbreviation are we using for pandas?</div>
+<h2>Part 2 – Create a Dataset</h2><pre><code>data = {
+    "Name": ["Maria", "Carlos", "Jennifer", "David", "Sofia"],
+    "Hours_Studied": [6, 4, 5, 2, 3],
+    "Exam_Score": [95, 82, 88, 65, 75]
+}
+
+df = pd.DataFrame(data)
+print(df)</code></pre><div class="question"><strong>Q2.</strong> How many students and columns are in this dataset?</div>
+<h2>Part 3 – Inspect the Data</h2><pre><code>print(df.head())
+print(df.shape)
+print(df.columns)</code></pre><div class="question"><strong>Q3.</strong> What does <code>df.shape</code> report?</div>
+<h2>Part 4 – Select a Column</h2><pre><code>print(df["Exam_Score"])</code></pre><div class="question"><strong>Q4.</strong> What type of information is stored in the Exam_Score column?</div>
+<h2>Part 5 – Basic Statistics</h2><pre><code>print("Average:", df["Exam_Score"].mean())
+print("Lowest:", df["Exam_Score"].min())
+print("Highest:", df["Exam_Score"].max())</code></pre><div class="question"><strong>Q5.</strong> Record the average, lowest, and highest exam score.</div>
+<h2>Part 6 – Analyze Hours Studied</h2><pre><code>print("Average Hours:", df["Hours_Studied"].mean())
+print("Maximum Hours:", df["Hours_Studied"].max())</code></pre><div class="question"><strong>Q6.</strong> What are the average and maximum hours studied?</div>
+<h2>Part 7 – Create a New Column</h2><pre><code>df["Passed"] = df["Exam_Score"] >= 70
+print(df)</code></pre><div class="question"><strong>Q7.</strong> How many students passed? How many failed?</div>
+<h2>Part 8 – Save and Reload a CSV</h2><pre><code>df.to_csv("student_data.csv", index=False)
+new_df = pd.read_csv("student_data.csv")
+print(new_df)</code></pre><div class="question"><strong>Q8.</strong> What is a CSV file useful for?</div>
+<h2>Part 9 – Larger Dataset</h2><pre><code>data2 = {
+ "Exam_Score":[55,61,67,70,72,75,78,80,83,87],
+ "Attendance":[60,65,70,72,75,78,80,85,90,98]
+}
+large_df = pd.DataFrame(data2)
+print("Average Exam:", large_df["Exam_Score"].mean())
+print("Highest Exam:", large_df["Exam_Score"].max())
+print("Average Attendance:", large_df["Attendance"].mean())</code></pre><div class="question"><strong>Q9.</strong> Record the three results.</div>
+<h2>Part 10 – Challenge: Computer Dataset</h2><pre><code>computers = {
+ "Model":["A","B","C","D","E"],
+ "Price":[600,750,900,800,1400],
+ "RAM":[8,16,16,16,24]
+}
+computer_df = pd.DataFrame(computers)</code></pre><p>Write code to display the number of computers, average price, highest price, and average RAM.</p>
+<h2>ML Connection</h2><div class="question"><strong>Q10.</strong> Why is organizing data into rows and columns useful before training a machine-learning model?</div>
+<h2>Submission</h2><div class="submission">Run all cells, answer all questions in Text cells, download the completed <code>.ipynb</code>, and submit it in Blackboard.</div>
+<h2>Grading</h2><table><tr><th>Area</th><th>Points</th></tr><tr><td>DataFrame creation</td><td>3</td></tr><tr><td>Inspection/selection</td><td>3</td></tr><tr><td>Statistics</td><td>3</td></tr><tr><td>New column/CSV</td><td>2</td></tr><tr><td>Challenge</td><td>2</td></tr><tr><td>Questions/completion</td><td>2</td></tr><tr><th>Total</th><th>15</th></tr></table></div></body></html>
