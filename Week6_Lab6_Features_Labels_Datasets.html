@@ -1,0 +1,99 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Lab 6</title><style>body {font-family: Arial, Helvetica, sans-serif; line-height: 1.6; margin: 0; background:#f5f7fa; color:#1f2937;}
+.container {max-width: 980px; margin: 30px auto; background:#fff; padding: 40px; box-shadow:0 2px 10px rgba(0,0,0,.08); border-radius:10px;}
+h1,h2,h3 {color:#123b63;} h1 {border-bottom:4px solid #123b63; padding-bottom:10px;}
+h2 {margin-top:32px; border-bottom:1px solid #d1d5db; padding-bottom:6px;}
+.meta {background:#eef4fb; padding:15px 18px; border-left:5px solid #123b63; margin:20px 0;}
+.objective,.note,.question,.submission {padding:14px 16px; border-radius:6px; margin:16px 0;}
+.objective {background:#f0fdf4; border-left:5px solid #2f855a;} .note {background:#fff7ed; border-left:5px solid #d97706;}
+.question {background:#f8fafc; border:1px solid #cbd5e1;} .submission {background:#f5f3ff; border-left:5px solid #7c3aed;}
+code {font-family: Consolas, Monaco, monospace; background:#eef2f7; padding:2px 5px; border-radius:4px;}
+pre {background:#111827; color:#f9fafb; padding:15px; border-radius:8px; overflow:auto;} pre code {background:transparent; color:inherit; padding:0;}
+table {width:100%; border-collapse:collapse; margin:16px 0;} th,td {border:1px solid #cbd5e1; padding:10px; text-align:left;} th {background:#eef4fb;}
+ul,ol {padding-left:24px;}</style></head><body><div class="container"><h1>Lab 6 – Features, Labels, and Datasets</h1>
+<div class="meta"><strong>Course:</strong> CYAI 1471 – Introduction to Machine Learning<br><strong>Points:</strong> 15<br><strong>Due:</strong> Sunday, October 4, 2026<br><strong>Estimated Time:</strong> 75–90 minutes</div>
+<div class="objective"><strong>Objective:</strong> Learn how machine-learning datasets are organized and practice identifying observations, features, and labels/targets. You will use pandas to create feature data <code>X</code> and target data <code>y</code>. No machine-learning model is trained in this lab.</div>
+<h2>Part 1 – Create Your Colab Notebook</h2><ol>
+<li>Open Google Colab and create a new notebook.</li><li>Rename it <code>LastName_FirstName_Lab6.ipynb</code>.</li>
+<li>In the first Text cell, type <strong>Lab 6 – Features, Labels, and Datasets</strong>, your name, and the date.</li></ol>
+<div class="note"><strong>Written answers:</strong> For every question, click <strong>+ Text</strong> below the related code and type the question number followed by your answer.</div>
+
+<h2>Part 2 – Machine Learning Vocabulary</h2>
+<p>Machine learning uses data examples to discover patterns that can be used for predictions or grouping. In <strong>supervised learning</strong>, the training examples include the answer we want the model to learn. In <strong>unsupervised learning</strong>, the data does not include a target answer and the algorithm looks for patterns or groups.</p>
+<div class="question"><strong>Q1.</strong> In your own words, what is machine learning?<br><strong>Q2.</strong> What is the main difference between supervised and unsupervised learning?</div>
+
+<h2>Part 3 – Create a Dataset</h2><p>Add a Code cell and run:</p>
+<pre><code>import pandas as pd
+
+data = {
+    "Student": ["Ana", "Ben", "Carlos", "Diana", "Eli", "Fatima"],
+    "Hours_Studied": [2, 5, 4, 7, 1, 6],
+    "Attendance": [70, 92, 85, 96, 65, 90],
+    "Previous_Score": [68, 82, 78, 91, 60, 86],
+    "Passed": ["No", "Yes", "Yes", "Yes", "No", "Yes"]
+}
+
+df = pd.DataFrame(data)
+df</code></pre>
+<p>You should see six rows and five columns. Each row is one student observation. Each column stores one type of information.</p>
+<div class="question"><strong>Q3.</strong> How many student observations are in the dataset?<br><strong>Q4.</strong> List the five column names.</div>
+
+<h2>Part 4 – Inspect the Dataset</h2>
+<pre><code>print("Shape:", df.shape)
+print("Columns:", list(df.columns))
+print()
+print(df.head())</code></pre>
+<div class="note"><code>df.shape</code> reports <strong>(rows, columns)</strong>. For this dataset the result is <code>(6, 5)</code>.</div>
+<div class="question"><strong>Q5.</strong> What does the 6 represent in <code>(6, 5)</code>? What does the 5 represent?</div>
+
+<h2>Part 5 – Features and Labels</h2>
+<p>A <strong>feature</strong> is input information used to make a prediction. A <strong>label</strong> or <strong>target</strong> is the answer the supervised model is supposed to learn to predict.</p>
+<p>For this example, imagine that we want to predict whether a student will pass. We will use Hours Studied, Attendance, and Previous Score as features. <code>Passed</code> will be the target.</p>
+<pre><code>X = df[["Hours_Studied", "Attendance", "Previous_Score"]]
+y = df["Passed"]
+
+print("FEATURES (X)")
+print(X)
+
+print()
+print("TARGET (y)")
+print(y)</code></pre>
+<div class="question"><strong>Q6.</strong> Which three columns are being used as features?<br><strong>Q7.</strong> Which column is the target?</div>
+
+<h2>Part 6 – Why X and y?</h2>
+<p>In machine-learning examples, <code>X</code> is commonly used for the input features and <code>y</code> for the target. These names are conventions, not special Python commands.</p>
+<pre><code>print("X shape:", X.shape)
+print("y shape:", y.shape)</code></pre>
+<p>Expected output:</p><pre><code>X shape: (6, 3)
+y shape: (6,)</code></pre>
+<div class="question"><strong>Q8.</strong> Why does <code>X</code> have three columns?<br><strong>Q9.</strong> Why does <code>y</code> contain six values?</div>
+
+<h2>Part 7 – Classification, Regression, or Clustering?</h2>
+<table><tr><th>Type</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>Classification</td><td>Predict a category/class</td><td>Pass or Fail</td></tr>
+<tr><td>Regression</td><td>Predict a numerical value</td><td>Predict an exam score</td></tr>
+<tr><td>Clustering</td><td>Find groups without known labels</td><td>Group customers by similar behavior</td></tr></table>
+<div class="question"><strong>Q10.</strong> Predict whether an email is Spam or Not Spam: classification, regression, or clustering?<br>
+<strong>Q11.</strong> Predict the selling price of a house: classification, regression, or clustering?<br>
+<strong>Q12.</strong> Group customers into similar shopping groups when no group labels are provided: classification, regression, or clustering?</div>
+
+<h2>Part 8 – Supervised or Unsupervised?</h2>
+<div class="question"><strong>Q13.</strong> Is predicting <code>Passed</code> from labeled examples supervised or unsupervised learning? Explain.<br>
+<strong>Q14.</strong> Is grouping unlabeled customers into similar groups supervised or unsupervised learning? Explain.</div>
+
+<h2>Part 9 – Change the Prediction Goal</h2>
+<p>Suppose the goal changes. Instead of predicting Pass/Fail, we want to predict a student's numerical final exam score. The target would now be a number.</p>
+<div class="question"><strong>Q15.</strong> Would predicting a numerical final exam score be classification or regression? Why?</div>
+
+<h2>Part 10 – Challenge</h2>
+<p>Create a second feature set that uses only <code>Hours_Studied</code> and <code>Attendance</code>.</p>
+<pre><code>X2 = df[["Hours_Studied", "Attendance"]]
+
+print(X2)
+print("X2 shape:", X2.shape)</code></pre>
+<div class="question"><strong>Q16.</strong> What is the shape of <code>X2</code>?<br><strong>Q17.</strong> What changed between <code>X</code> and <code>X2</code>?</div>
+
+<h2>Part 11 – Machine Learning Connection</h2>
+<div class="question"><strong>Q18.</strong> Why is it important to decide which columns are features and which column is the target before training a supervised model?<br>
+<strong>Q19.</strong> Give one real-world example of a feature and target that were not used in this lab.</div>
+
+<h2>Submission Checklist</h2><div class="submission"><ul><li>Your name is at the top of the notebook.</li><li>All code cells have been run and show output.</li><li>Questions Q1–Q19 are answered in Text cells.</li><li>The notebook is named <code>LastName_FirstName_Lab6.ipynb</code>.</li><li>Use <strong>File → Download → Download .ipynb</strong> and submit that file in Blackboard.</li></ul></div></div></body></html>
