@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Lab 7</title><style>body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;margin:0;background:#f5f7fa;color:#1f2937}.container{max-width:980px;margin:30px auto;background:#fff;padding:40px;box-shadow:0 2px 10px rgba(0,0,0,.08);border-radius:10px}h1,h2,h3{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:10px}h2{margin-top:32px;border-bottom:1px solid #d1d5db;padding-bottom:6px}.meta{background:#eef4fb;padding:15px 18px;border-left:5px solid #123b63;margin:20px 0}.objective,.note,.question,.submission{padding:14px 16px;border-radius:6px;margin:16px 0}.objective{background:#f0fdf4;border-left:5px solid #2f855a}.note{background:#fff7ed;border-left:5px solid #d97706}.question{background:#f8fafc;border:1px solid #cbd5e1}.submission{background:#f5f3ff;border-left:5px solid #7c3aed}code{font-family:Consolas,Monaco,monospace;background:#eef2f7;padding:2px 5px;border-radius:4px}pre{background:#111827;color:#f9fafb;padding:15px;border-radius:8px;overflow:auto}pre code{background:transparent;color:inherit;padding:0}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid #cbd5e1;padding:10px;text-align:left}th{background:#eef4fb}ul,ol{padding-left:24px}</style></head><body><div class="container"><h1>Lab 7 – Cleaning and Preparing Data</h1><div class="meta"><strong>Points:</strong> 15 · <strong>Due:</strong> Sunday, October 11, 2026 · <strong>Estimated time:</strong> 75–90 minutes</div>
+<div class="objective"><strong>Objective:</strong> Inspect a messy dataset, identify common data-quality problems, clean the data with pandas, and prepare feature data <code>X</code> and target data <code>y</code>.</div>
+<h2>Part 1 – Create the Notebook</h2><ol><li>Open Google Colab.</li><li>Create a new notebook.</li><li>Rename it <code>LastName_FirstName_Lab7.ipynb</code>.</li><li>Add a Text cell containing the lab title, your name, and date.</li></ol>
+<div class="note"><strong>Written answers:</strong> Click <strong>+ Text</strong> below the related code and type the question number followed by your answer.</div>
+<h2>Part 2 – Create a Messy Dataset</h2><pre><code>import pandas as pd
+import numpy as np
+
+data = {
+    "Student_ID": [101, 102, 103, 104, 105, 106],
+    "Hours_Studied": [5, 3, np.nan, 7, 2, 4],
+    "Attendance": [90, 80, 85, np.nan, 70, 88],
+    "Study_Method": ["Online", "online", "Group", "GROUP", "Online", "Group"],
+    "Previous_Score": [82, 75, 78, 91, np.nan, 84],
+    "Passed": ["Yes", "Yes", "Yes", "Yes", "No", "Yes"]
+}
+
+df = pd.DataFrame(data)
+df</code></pre>
+<div class="question"><strong>Q1.</strong> How many rows are in the dataset?<br><strong>Q2.</strong> Name two data-quality problems you can see.</div>
+<h2>Part 3 – Find Missing Values</h2><pre><code>print(df.isna())
+print()
+print("Missing values in each column:")
+print(df.isna().sum())</code></pre>
+<p>Expected missing counts: Hours_Studied = 1, Attendance = 1, Previous_Score = 1.</p>
+<div class="question"><strong>Q3.</strong> Which three columns contain a missing value?<br><strong>Q4.</strong> Why could missing values be a problem for machine learning?</div>
+<h2>Part 4 – Fill Missing Numerical Values</h2><p>For this beginner exercise, fill each missing numerical value with that column's mean.</p>
+<pre><code>df["Hours_Studied"] = df["Hours_Studied"].fillna(df["Hours_Studied"].mean())
+df["Attendance"] = df["Attendance"].fillna(df["Attendance"].mean())
+df["Previous_Score"] = df["Previous_Score"].fillna(df["Previous_Score"].mean())
+
+print(df)
+print()
+print(df.isna().sum())</code></pre>
+<div class="question"><strong>Q5.</strong> After this code runs, how many missing values remain?<br><strong>Q6.</strong> In your own words, what did <code>fillna()</code> do?</div>
+<h2>Part 5 – Correct Inconsistent Text</h2><p><code>Online</code> and <code>online</code> should represent the same category. The same is true for <code>Group</code> and <code>GROUP</code>.</p>
+<pre><code>print(df["Study_Method"].unique())
+
+df["Study_Method"] = df["Study_Method"].str.title()
+
+print(df["Study_Method"].unique())</code></pre>
+<p>Expected cleaned categories: <code>Online</code> and <code>Group</code>.</p>
+<div class="question"><strong>Q7.</strong> Why is consistent spelling/capitalization important when categories represent the same thing?</div>
+<h2>Part 6 – Remove an Unnecessary Identifier</h2><p>For this practice prediction problem, Student_ID identifies a student but is not intended to describe study behavior.</p>
+<pre><code>df_clean = df.drop(columns=["Student_ID"])
+print(df_clean)</code></pre>
+<div class="question"><strong>Q8.</strong> Which column was removed?<br><strong>Q9.</strong> Why might an ID number be inappropriate as a feature for this prediction task?</div>
+<h2>Part 7 – Choose Features and Target</h2><p>We will predict <code>Passed</code>. For now, use only numerical features so that later modeling steps stay simple.</p>
+<pre><code>X = df_clean[["Hours_Studied", "Attendance", "Previous_Score"]]
+y = df_clean["Passed"]
+
+print("X:")
+print(X)
+print()
+print("y:")
+print(y)</code></pre>
+<div class="question"><strong>Q10.</strong> What are the three features?<br><strong>Q11.</strong> What is the target?</div>
+<h2>Part 8 – Inspect X and y</h2><pre><code>print("X shape:", X.shape)
+print("y shape:", y.shape)</code></pre>
+<p>Expected: <code>X shape: (6, 3)</code> and <code>y shape: (6,)</code>.</p>
+<div class="question"><strong>Q12.</strong> What do the 6 and 3 mean in <code>X.shape</code>?</div>
+<h2>Part 9 – Training and Testing Concept</h2><p>Later, we will divide data into two groups. <strong>Training data</strong> is used to teach/f​​it the model. <strong>Testing data</strong> is kept separate and used to see how the trained model performs on examples it did not use for training.</p>
+<div class="question"><strong>Q13.</strong> What is training data used for?<br><strong>Q14.</strong> Why should testing data be kept separate from training data?</div>
+<h2>Part 10 – Verify the Clean Data</h2><pre><code>print("Missing values:")
+print(df_clean.isna().sum())
+
+print()
+print("Rows and columns:", df_clean.shape)
+print()
+print(df_clean)</code></pre>
+<div class="question"><strong>Q15.</strong> How many missing values should remain?<br><strong>Q16.</strong> How many rows and columns are in <code>df_clean</code>?</div>
+<h2>Part 11 – Reflection</h2><div class="question"><strong>Q17.</strong> List three data-preparation steps completed in this lab.<br><strong>Q18.</strong> Why should data be inspected and cleaned before training a machine-learning model?</div>
+<h2>Submission</h2><div class="submission"><ul><li>Run all code cells.</li><li>Answer Q1–Q18 in Text cells.</li><li>Save as <code>LastName_FirstName_Lab7.ipynb</code>.</li><li>Use <strong>File → Download → Download .ipynb</strong>.</li><li>Submit the notebook in Blackboard.</li></ul></div></div></body></html>

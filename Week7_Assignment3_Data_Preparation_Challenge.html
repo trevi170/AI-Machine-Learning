@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Assignment 3</title><style>body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;margin:0;background:#f5f7fa;color:#1f2937}.container{max-width:980px;margin:30px auto;background:#fff;padding:40px;box-shadow:0 2px 10px rgba(0,0,0,.08);border-radius:10px}h1,h2,h3{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:10px}h2{margin-top:32px;border-bottom:1px solid #d1d5db;padding-bottom:6px}.meta{background:#eef4fb;padding:15px 18px;border-left:5px solid #123b63;margin:20px 0}.objective,.note,.question,.submission{padding:14px 16px;border-radius:6px;margin:16px 0}.objective{background:#f0fdf4;border-left:5px solid #2f855a}.note{background:#fff7ed;border-left:5px solid #d97706}.question{background:#f8fafc;border:1px solid #cbd5e1}.submission{background:#f5f3ff;border-left:5px solid #7c3aed}code{font-family:Consolas,Monaco,monospace;background:#eef2f7;padding:2px 5px;border-radius:4px}pre{background:#111827;color:#f9fafb;padding:15px;border-radius:8px;overflow:auto}pre code{background:transparent;color:inherit;padding:0}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid #cbd5e1;padding:10px;text-align:left}th{background:#eef4fb}ul,ol{padding-left:24px}</style></head><body><div class="container"><h1>Assignment 3 – Data Preparation Challenge</h1><div class="meta"><strong>25 points</strong> · Due Sunday, October 11, 2026</div>
+<div class="objective"><strong>Goal:</strong> Apply the Week 7 data-cleaning workflow to a new dataset with less step-by-step guidance.</div>
+<h2>Scenario</h2><p>A small training company wants to use past employee data to eventually predict whether an employee completed a training program. Before any model can be built, the dataset must be cleaned and prepared.</p>
+<h2>Step 1 – Create the Dataset</h2><pre><code>import pandas as pd
+import numpy as np
+
+data = {
+    "Employee_ID": [201, 202, 203, 204, 205, 206, 207, 208],
+    "Training_Hours": [10, 7, np.nan, 12, 5, 9, 6, 11],
+    "Attendance": [95, 82, 88, 97, np.nan, 90, 75, 93],
+    "Department": ["IT", "it", "Sales", "SALES", "HR", "hr", "IT", "Sales"],
+    "Previous_Test": [88, 76, 81, 94, 70, np.nan, 72, 90],
+    "Completed": ["Yes", "Yes", "Yes", "Yes", "No", "Yes", "No", "Yes"]
+}
+
+df = pd.DataFrame(data)
+df</code></pre>
+<h2>Required Tasks</h2><ol><li>Display the dataset and its shape.</li><li>Use pandas to count missing values in every column.</li><li>Fill each missing numerical value with the mean of its column.</li><li>Standardize the Department values so equivalent departments have consistent capitalization.</li><li>Remove <code>Employee_ID</code>.</li><li>Create <code>X</code> using Training_Hours, Attendance, and Previous_Test.</li><li>Create <code>y</code> using Completed.</li><li>Display X, y, X.shape, and y.shape.</li><li>Verify that no missing values remain in the cleaned dataset.</li></ol>
+<h2>Written Questions</h2><div class="question"><strong>A1.</strong> Which columns originally contained missing values?<br><strong>A2.</strong> Why did you remove Employee_ID?<br><strong>A3.</strong> What are your features?<br><strong>A4.</strong> What is your target?<br><strong>A5.</strong> Is predicting Completed supervised or unsupervised learning? Explain.<br><strong>A6.</strong> Is this prediction classification or regression? Explain.<br><strong>A7.</strong> What is the final shape of X?<br><strong>A8.</strong> Explain why a separate test set will be useful when a model is trained later.</div>
+<h2>Submission</h2><div class="submission">Submit <code>LastName_FirstName_Assignment3.ipynb</code> to Blackboard. All code must be run and written responses must be in Text cells.</div>
+<h2>25-Point Rubric</h2><table><tr><th>Requirement</th><th>Points</th></tr><tr><td>Dataset inspection and missing-value analysis</td><td>5</td></tr><tr><td>Correct cleaning and category standardization</td><td>6</td></tr><tr><td>Correct feature/target preparation</td><td>5</td></tr><tr><td>Written questions</td><td>7</td></tr><tr><td>Complete, organized notebook</td><td>2</td></tr><tr><th>Total</th><th>25</th></tr></table></div></body></html>
