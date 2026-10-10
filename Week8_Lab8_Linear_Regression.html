@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Lab 8</title><style>body{font-family:Arial;line-height:1.65;background:#f5f7fa;color:#1f2937}.container{max-width:960px;margin:25px auto;padding:38px;background:white;border-radius:12px}h1,h2{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:10px}h2{margin-top:30px}.meta{background:#eef4fb;padding:16px;border-left:5px solid #123b63}.question{background:#f8fafc;padding:12px;margin:15px 0;border:1px solid #cbd5e1}pre{background:#111827;color:white;padding:18px;overflow:auto;border-radius:7px}code{font-family:Consolas,monospace}li{margin-bottom:7px}</style></head><body><div class="container"><h1>Lab 8 – Predicting Exam Scores with Linear Regression</h1><div class="meta">CYAI 1471 | 15 points | Due October 18, 2026 | Google Colab | Approximately 75–90 minutes</div><h2>Objectives</h2><p>Build your first model, use training/testing data, predict scores, and interpret mean absolute error (MAE).</p><h2>Part 1 – Start Google Colab</h2><ol><li>Open Google Colab and choose New notebook.</li><li>Rename the file <code>LastName_FirstName_Lab8.ipynb</code>.</li><li>Insert a Text cell with your name, date and lab title.</li><li>Use <strong>+ Code</strong> for Python and <strong>+ Text</strong> for every written answer.</li></ol><h2>Part 2 – Import and Create Data</h2><p>Type and run this code:</p><pre><code>import pandas as pd
+
+data = {
+    "Hours_Studied": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "Exam_Score": [52, 55, 61, 64, 68, 73, 77, 81, 86, 90]
+}
+df = pd.DataFrame(data)
+print(df)</code></pre><p><strong>Expected:</strong> 10 rows and 2 columns, showing increasing scores as study hours increase.</p><div class="question"><strong>Q1.</strong> What does each row represent?<br><strong>Q2.</strong> Which column should be used to predict the other?<br><strong>Q3.</strong> Is predicting a numerical score classification or regression? Explain.</div><h2>Part 3 – Explore the Relationship</h2><pre><code>import matplotlib.pyplot as plt
+
+plt.scatter(df["Hours_Studied"], df["Exam_Score"])
+plt.xlabel("Hours Studied")
+plt.ylabel("Exam Score")
+plt.title("Study Hours and Exam Scores")
+plt.show()</code></pre><p><strong>Expected:</strong> a scatterplot where points generally rise from left to right.</p><div class="question"><strong>Q4.</strong> What trend do you see in the scatterplot?</div><h2>Part 4 – Select X and y</h2><pre><code>X = df[["Hours_Studied"]]
+y = df["Exam_Score"]
+print("X shape:", X.shape)
+print("y shape:", y.shape)</code></pre><p><strong>Expected:</strong> <code>X shape: (10, 1)</code> and <code>y shape: (10,)</code>. Double brackets keep X as a two-dimensional table.</p><div class="question"><strong>Q5.</strong> What is the feature?<br><strong>Q6.</strong> What is the target?<br><strong>Q7.</strong> Why does X have one column?</div><h2>Part 5 – Split Training and Testing Data</h2><pre><code>from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+print("Training rows:", len(X_train))
+print("Testing rows:", len(X_test))</code></pre><p><strong>Expected:</strong> 8 training rows and 2 testing rows. The random_state makes the split repeatable.</p><div class="question"><strong>Q8.</strong> What is the purpose of training data?<br><strong>Q9.</strong> Why keep testing data separate?</div><h2>Part 6 – Train the Model</h2><pre><code>from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+print("Model trained successfully")</code></pre><p><strong>Expected:</strong> <code>Model trained successfully</code>. The <code>fit()</code> method learns a line from the training examples.</p><div class="question"><strong>Q10.</strong> What does <code>model.fit()</code> do?</div><h2>Part 7 – Predict and Compare</h2><pre><code>predictions = model.predict(X_test)
+results = pd.DataFrame({
+    "Actual": y_test.to_numpy(),
+    "Predicted": predictions.round(2)
+})
+print(results)</code></pre><p><strong>Expected:</strong> two rows with actual and predicted numerical scores. Predictions may differ slightly from the actual values.</p><div class="question"><strong>Q11.</strong> Are the predictions exactly the same as the actual scores?<br><strong>Q12.</strong> Why might predictions differ from actual scores?</div><h2>Part 8 – Measure Error</h2><pre><code>from sklearn.metrics import mean_absolute_error
+
+mae = mean_absolute_error(y_test, predictions)
+print("Mean Absolute Error:", round(mae, 2))</code></pre><p>MAE is the average absolute difference between predicted and actual scores. Smaller values indicate smaller average errors on this test set.</p><div class="question"><strong>Q13.</strong> What does MAE measure?<br><strong>Q14.</strong> Would a lower or higher MAE be preferable? Explain.</div><h2>Part 9 – Predict a New Score</h2><pre><code>new_student = pd.DataFrame({"Hours_Studied": [5.5]})
+new_prediction = model.predict(new_student)
+print("Predicted score:", round(new_prediction[0], 2))</code></pre><p><strong>Expected:</strong> one numerical predicted score, around 70.</p><div class="question"><strong>Q15.</strong> What is the predicted score for 5.5 hours of study?<br><strong>Q16.</strong> Does this prediction guarantee the student will earn that score? Why or why not?</div><h2>Part 10 – Reflection</h2><div class="question"><strong>Q17.</strong> List the steps you followed from dataset creation to prediction.<br><strong>Q18.</strong> Give another real-world example where linear regression could predict a number.</div><h2>Submission Checklist</h2><ul><li>All code cells run without errors.</li><li>Q1–Q18 answered in Text cells.</li><li>Scatterplot and model results are visible.</li><li>Download File → Download → Download .ipynb.</li><li>Submit <code>LastName_FirstName_Lab8.ipynb</code> to Blackboard.</li></ul></div></body></html>
