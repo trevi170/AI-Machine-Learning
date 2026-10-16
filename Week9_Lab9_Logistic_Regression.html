@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Lab 9</title><style>body{font:16px/1.65 Arial;background:#f5f7fa;color:#1f2937;margin:0}.container{max-width:950px;margin:30px auto;padding:38px;background:white;border-radius:12px}h1,h2{color:#123b63}h1{border-bottom:4px solid #123b63;padding-bottom:8px}h2{margin-top:30px;border-bottom:1px solid #ddd}.meta,.note,.question{padding:14px 18px;margin:15px 0;border-radius:7px}.meta{background:#eef4fb;border-left:5px solid #123b63}.note{background:#fff7ed;border-left:5px solid #d97706}.question{background:#f8fafc;border:1px solid #cbd5e1}pre{background:#111827;color:white;padding:18px;border-radius:8px;overflow:auto}code{font-family:Consolas,monospace}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:9px}th{background:#eef4fb}</style></head><body><main class="container"><h1>Lab 9: Predicting Pass/Fail with Logistic Regression</h1><div class="meta">CYAI 1471 · 15 points · Due October 25, 2026 · 75–90 minutes</div><p><strong>Goal:</strong> Train a beginner-friendly classifier that predicts whether a student passes based on hours studied. This dataset is fictional and used only for instruction.</p><h2>Part 1: Start Your Notebook</h2><ol><li>Open Google Colab and choose New Notebook.</li><li>Rename it <code>LastName_FirstName_Lab9.ipynb</code>.</li><li>Add a Text cell with the title, your name, and date.</li><li>Enter each code example in a new Code cell and run it using the play button.</li><li>Answer every numbered question in a separate <strong>Text cell</strong>.</li></ol><h2>Part 2: Create and Inspect the Dataset</h2><pre><code>import pandas as pd
+
+data = {
+    "Hours_Studied": [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9],
+    "Passed":        [0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1]
+}
+df = pd.DataFrame(data)
+print(df)
+print("Shape:", df.shape)
+print("Class counts:")
+print(df["Passed"].value_counts().sort_index())</code></pre><p><strong>Expected:</strong> Shape <code>(16, 2)</code>; 6 students with class 0 and 10 with class 1. Here, 0 means Fail and 1 means Pass.</p><div class="question"><strong>Q1.</strong> How many rows are in the dataset?<p><strong>Q2.</strong> What does the target value 1 mean?</p><p><strong>Q3.</strong> Why is this a classification task rather than a linear regression task?</p></div><h2>Part 3: Choose X and y</h2><pre><code>X = df[["Hours_Studied"]]
+y = df["Passed"]
+print("X shape:", X.shape)
+print("y shape:", y.shape)</code></pre><p><strong>Expected:</strong> X shape (16, 1); y shape (16,).</p><div class="question"><strong>Q4.</strong> Identify the feature and the target.<p><strong>Q5.</strong> Why are there 16 target values?</p></div><h2>Part 4: Split Training and Testing Data</h2><pre><code>from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+print("Training rows:", len(X_train))
+print("Testing rows:", len(X_test))</code></pre><p><strong>Expected:</strong> Training rows: 12; Testing rows: 4. The <code>stratify=y</code> setting attempts to preserve class proportions in both groups.</p><div class="question"><strong>Q6.</strong> How many rows are used for training?<p><strong>Q7.</strong> Why do we reserve rows for testing?</p></div><h2>Part 5: Train a Logistic Regression Model</h2><pre><code>from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression(random_state=42)
+model.fit(X_train, y_train)
+print("Model trained successfully")</code></pre><p><strong>Expected:</strong> <code>Model trained successfully</code>. <code>fit()</code> teaches the model from training examples.</p><div class="question"><strong>Q8.</strong> What does <code>fit()</code> do?</div><h2>Part 6: Predict Test Outcomes</h2><pre><code>predictions = model.predict(X_test)
+results = pd.DataFrame({
+    "Hours_Studied": X_test["Hours_Studied"].to_numpy(),
+    "Actual": y_test.to_numpy(),
+    "Predicted": predictions
+})
+print(results)</code></pre><p><strong>Expected:</strong> Four rows showing hours, actual outcome, and predicted outcome. Values are 0 or 1.</p><div class="question"><strong>Q9.</strong> What do the values 0 and 1 in Predicted represent?<p><strong>Q10.</strong> Did the model correctly predict every test case? Use your displayed table.</p></div><h2>Part 7: Calculate Accuracy</h2><pre><code>from sklearn.metrics import accuracy_score, confusion_matrix
+
+accuracy = accuracy_score(y_test, predictions)
+print("Accuracy:", round(accuracy, 2))
+print("Confusion matrix:")
+print(confusion_matrix(y_test, predictions, labels=[0, 1]))</code></pre><p>Accuracy is the fraction of test predictions that match the actual labels. The confusion matrix counts correct and incorrect predictions by class.</p><div class="question"><strong>Q11.</strong> Record the accuracy printed by your notebook.<p><strong>Q12.</strong> If 3 of 4 test predictions were correct, what would the accuracy be?</p><p><strong>Q13.</strong> Why should we be cautious about evaluating a model using only four test rows?</p></div><h2>Part 8: Predict New Students</h2><pre><code>new_students = pd.DataFrame({"Hours_Studied": [2, 5, 8]})
+new_students["Predicted_Pass"] = model.predict(new_students[["Hours_Studied"]])
+new_students["Probability_of_Pass"] = model.predict_proba(
+    new_students[["Hours_Studied"]]
+)[:, 1].round(3)
+print(new_students)</code></pre><p>The probability is the model's estimated probability for class 1 (Pass), not a guarantee of an outcome.</p><div class="question"><strong>Q14.</strong> Which new student has the highest predicted probability of passing?<p><strong>Q15.</strong> Does a probability of 0.80 mean the student is guaranteed to pass? Explain.</p></div><h2>Part 9: Reflection</h2><div class="question"><strong>Q16.</strong> How does logistic regression differ from the linear regression model used in Week 8?<p><strong>Q17.</strong> Give another real-world example of binary classification.</p></div><h2>Submission</h2><div class="note">Run every code cell, answer Q1–Q17 in Text cells, then use <strong>File → Download → Download .ipynb</strong>. Submit <code>LastName_FirstName_Lab9.ipynb</code> in Blackboard.</div></main></body></html>
